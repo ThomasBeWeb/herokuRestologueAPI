@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000;
 application.listen(port, () => console.log('Listening on ${ PORT}'));
 
 //Import de la liste des menus
-import datas from './data.js';
+require('./data.js').listeDeMenus;
 
 //Test API
 application.get('/',

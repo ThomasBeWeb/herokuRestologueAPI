@@ -20,6 +20,11 @@ application.get('/',
 	}
 );
 
+application.use(bodyparser.json());
+application.use(bodyparser.urlencoded({
+    extended: true
+}));
+
 //********************************************************************************************************************
 //CONNEXION
 

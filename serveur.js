@@ -12,13 +12,6 @@ const path = require('path');
 // process.env.PORT lets the port be set by Heroku
 const port = process.env.PORT || 5000;
 
-//application.listen(13107,"192.168.1.59");
-// application.listen(port,"https://listemovies.herokuapp.com");
-
-// application.listen(port, function() {
-//    console.log('Our app is running on http://localhost:' + port);
-// });
-
 application.listen(port, () => console.log('Listening on ${ PORT}'));
 
 application.get('/',

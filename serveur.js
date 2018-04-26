@@ -31,6 +31,8 @@ application.post('/verify',
         
         //Recupere les infos à tester
         var userTest = request.body;
+
+        console.log(userTest);
         
         if((userTest.username === user.username) && (userTest.password === user.password)){
             response.status(200).send();
@@ -58,7 +60,7 @@ application.get('/connected',
     }
 );
 
-user = {
+var user = {
 username : "administrateur",
 password : "1234",
 connected : false

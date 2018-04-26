@@ -14,8 +14,14 @@ const port = process.env.PORT || 5000;
 
 application.listen(port, () => console.log('Listening on ${ PORT}'));
 
+//Import de la liste des menus
+import datas from './data.js';
+
+//Test API
 application.get('/',
 	function(request,response){
-		response.send("le git url très fort");
+		response.send("le git url très fort" + listeDeMenus[0].id);
 	}
 );
+
+

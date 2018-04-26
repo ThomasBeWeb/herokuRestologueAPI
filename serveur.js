@@ -6,7 +6,6 @@ var application = express();
 //Recup de bodyparser
 var bodyparser = require("body-parser");
 
-
 const path = require('path');
 
 // process.env.PORT lets the port be set by Heroku
@@ -20,51 +19,6 @@ application.get('/',
 		response.send("le git url très fort" + listeDeMenus[0].id);
 	}
 );
-
-//********************************************************************************************************************
-//CONNEXION
-
-//Vérifie que les informations reçues correspondent à l’utilisateur
-app.post('/verify',
-    function(request,response){
-        
-        response.header('Access-Control-Allow-Origin','*');
-        
-        //Recupere les infos à tester
-        var userTest = request.body;
-        
-        if((userTest.username === user.username) && (userTest.password === user.password)){
-            response.status(200).send();
-            user.connected = true;
-        }else{
-            response.status(401).send();
-        }
-    }
-);
-
-//Retourne un status 200 si l’utilisateur est connecté et 401 sinon
-
-app.get('/connected',
-
-    function(request,response){
-        
-        response.header('Access-Control-Allow-Origin','*');
-        
-        if(user.connected === true){
-            response.status(200).send();
-
-        }else{
-            response.status(401).send();
-        }
-    }
-);
-
-user = {
-username : "administrateur",
-password : "1234",
-connected : false
-};
-
 
 
 

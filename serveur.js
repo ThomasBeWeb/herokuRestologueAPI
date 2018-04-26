@@ -41,7 +41,28 @@ application.post('/verify',
     }
 );
 
+//Retourne un status 200 si l’utilisateur est connecté et 401 sinon
 
+application.get('/connected',
+
+    function(request,response){
+        
+        response.header('Access-Control-Allow-Origin','*');
+        
+        if(user.connected === true){
+            response.status(200).send();
+
+        }else{
+            response.status(401).send();
+        }
+    }
+);
+
+user = {
+username : "administrateur",
+password : "1234",
+connected : false
+};
 
 
 //*********************************************************************************************************************

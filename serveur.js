@@ -138,11 +138,10 @@ application.get("/cartes/add/:nom", function (req, res) {
         nom: nomCarte,
         menu: []
     };
-    
-    console.log(newCard);
 
     listeDeCartes.push(newCard);
     res.status(200).json();
+    res.status(404).send();
 });
 
 // Supprime la carte sélectionnée

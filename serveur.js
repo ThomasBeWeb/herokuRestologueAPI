@@ -105,14 +105,16 @@ application.get("/cartes/:id/get", function (request, response) {
         }
     }
 
-    //Recup de la liste des menus complets
-    for (var i = 0; i < listeID.length; i++) {
+    //Recup de la liste des menus complets si il y en a
+    if (listeID.length > 0) {
+        for (var i = 0; i < listeID.length; i++) {
 
-        for (var j = 0; j < listeDeMenus.length; j++) {
+            for (var j = 0; j < listeDeMenus.length; j++) {
 
-            if (listeID[i] === listeDeMenus[j].id) {
-                carteEnCours.menu.push(listeDeMenus[j]);
-                break;
+                if (listeID[i] === listeDeMenus[j].id) {
+                    carteEnCours.menu.push(listeDeMenus[j]);
+                    break;
+                }
             }
         }
     }
@@ -122,14 +124,22 @@ application.get("/cartes/:id/get", function (request, response) {
     response.status(404).send("carte inconnue");
 });
 
-// Ajoute une nouvelle carte et retourne son id   
+// Ajoute une nouvelle carte. Recoit juste le nom, cree l'ID et la liste de menu vide
 application.post("/cartes/add", function (req, res) {
     res.header('Access-Control-Allow-Origin', '*');
-    let bCarte = req.body;
-    bCarte["id"] = generateIdCarte();
+    
+    let nomCarte = req.body;
+    
+    var newID =  generateIdCarte();
+    
+    var newCard = {
+        id: newID,
+        nom: nomCarte,
+        menu: []
+    };
 
-    listeDeCartes.push(bCarte);
-    res.status(200).json(req.body);
+    listeDeCartes.push(newCard);
+    res.status(200).json();
 });
 
 // Supprime la carte sélectionnée
@@ -161,7 +171,8 @@ function generateIdCarte() {
         }
     }
     return idMax + 1;
-};
+}
+;
 
 //*********************************************************************************************************************
 //DATAS

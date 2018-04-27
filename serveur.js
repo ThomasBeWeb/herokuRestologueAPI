@@ -96,14 +96,38 @@ application.get("/cartes/:id/get", function (request, response) {
             response.status(404).send("carte inconnue");
         }
     }
-
 });
 
+// Ajoute une nouvelle carte et retourne son id   
+application.post("/cartes/add", function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    let bCarte = req.body;
+    bCarte["id"] = generateIdCarte();
 
+    listeDeCartes.push(bCarte);
+    res.status(200).json(req.body);
+});
+
+// Supprime la carte sélectionnée et tous les menus correspondants
+application.get("/cartes/:id/remove", function (request, response) {
+
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    let idCarte = parseInt(request.params.id);
+    let aCarte;
+    for (var i = 0; i < listeDeCartes.length; i++) {
+        aCarte = listeDeCartes[i];
+        if (idCarte === listeDeCartes[i].id) {
+            listeDeCartes.splice(i, 1);
+            response.status(200).json(aCarte);
+            response.setHeader("content-Type", "application/json");
+            break;
+        }
+    }
+});
 
 //*********************************************************************************************************************
 //FONCTIONS
-//
+
 // génération de l'id d'une Carte
 function generateIdCarte() {
     var idMax = 0;

@@ -71,6 +71,49 @@ password : "1234",
 connected : false
 };
 
+//*********************************************************************************************************************
+//RECUPERATION DATAS
+
+// Retourne toutes les cartes
+app.get("/cartes/get", function (request, response) {
+
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader("content-Type", "application/json");
+    response.status(200).json(listeDeCartes);
+});
+
+// Retourne une carte par son id
+app.get("/cartes/:id/get", function (request, response) {
+
+    response.setHeader('Access-Control-Allow-Origin', '*');
+            let idCarte = parseInt(request.params.id);
+            let
+    aCarte;
+            for (var i = 0; i < listeDeCartes.length; i++) {
+        aCarte = listeDeCartes[i];
+        if (idCarte === listeDeCartes[i].id) {
+            response.setHeader("content-Type", "application/json");
+            response.status(200).json(aCarte);
+        }
+    }
+    response.status(404).send("carte inconnue");
+});
+
+
+
+//*********************************************************************************************************************
+//FONCTIONS
+//
+// génération de l'id d'une Carte
+function generateIdCarte() {
+    var idMax = 0;
+    for (var i in listeDeCartes) {
+        if (listeDeCartes[i].id > idMax) {
+            idMax = listeDeCartes[i].id;
+        }
+    }
+    return idMax + 1;
+}
 
 //*********************************************************************************************************************
 //DATAS
@@ -145,3 +188,5 @@ var listeDeCartes = [
     }
 
 ];
+
+

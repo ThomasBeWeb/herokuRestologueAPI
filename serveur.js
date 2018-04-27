@@ -110,7 +110,7 @@ application.get("/cartes/:id/get", function (request, response) {
 
         for (var j = 0; j < listeDeMenus.length; j++) {
 
-            if (listeID[i].id === listeDeMenus[j].id) {
+            if (listeID[i] === listeDeMenus[j].id) {
                 carteEnCours.menu.push(listeDeMenus[i]);
                 break;
             }

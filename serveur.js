@@ -76,7 +76,7 @@ var user = {
 // Retourne toutes les cartes
 application.get("/cartes/get", function (request, response) {
 
-    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.header('Access-Control-Allow-Origin', '*');
     response.setHeader("content-Type", "application/json");
     response.status(200).json(listeDeCartes);
 });
@@ -84,13 +84,13 @@ application.get("/cartes/get", function (request, response) {
 // Retourne une carte par son id
 application.get("/cartes/:id/get", function (request, response) {
 
-    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.header('Access-Control-Allow-Origin', '*');
     let idCarte = parseInt(request.params.id);
     let aCarte;
     for (var i = 0; i < listeDeCartes.length; i++) {
         aCarte = listeDeCartes[i];
         if (idCarte === listeDeCartes[i].id) {
-            response.setHeader("content-Type", "application/json");
+            response.header("content-Type", "application/json");
             response.status(200).json(aCarte);
         }
     }
@@ -99,7 +99,7 @@ application.get("/cartes/:id/get", function (request, response) {
 
 // Ajoute une nouvelle carte et retourne son id   
 application.post("/cartes/add", function (req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', '*');
     let bCarte = req.body;
     bCarte["id"] = generateIdCarte();
 
@@ -110,7 +110,7 @@ application.post("/cartes/add", function (req, res) {
 // Supprime la carte sélectionnée
 application.get("/cartes/:id/remove", function (request, response) {
 
-    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.header('Access-Control-Allow-Origin', '*');
     let idCarte = parseInt(request.params.id);
     let aCarte;
     for (var i = 0; i < listeDeCartes.length; i++) {
@@ -127,13 +127,14 @@ application.get("/cartes/:id/remove", function (request, response) {
 // Retourne le menu sélectionné
 application.get("/cartes/menus/:id/get", function (request, response) {
 
-    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.header('Access-Control-Allow-Origin', '*');
+    
     let idMenu = parseInt(request.params.id);
     let aMenu;
     for (var i = 0; i < listeDeMenus.length; i++) {
         aMenu = listeDeMenus[i];
         if (idMenu === listeDeMenus[i].id) {
-            response.setHeader("content-Type", "application/json");
+            response.header("content-Type", "application/json");
             response.status(200).json(aMenu);
         }
     }

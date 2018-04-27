@@ -92,10 +92,9 @@ application.get("/cartes/:id/get", function (request, response) {
         if (idCarte === listeDeCartes[i].id) {
             response.setHeader("content-Type", "application/json");
             response.status(200).json(aCarte);
-        } else {
-            response.status(404).send("carte inconnue");
         }
     }
+    response.status(404).send("carte inconnue");
 });
 
 // Ajoute une nouvelle carte et retourne son id   
@@ -108,7 +107,7 @@ application.post("/cartes/add", function (req, res) {
     res.status(200).json(req.body);
 });
 
-// Supprime la carte sélectionnée et tous les menus correspondants
+// Supprime la carte sélectionnée
 application.get("/cartes/:id/remove", function (request, response) {
 
     response.setHeader('Access-Control-Allow-Origin', '*');
@@ -123,6 +122,22 @@ application.get("/cartes/:id/remove", function (request, response) {
             break;
         }
     }
+});
+
+// Retourne le menu sélectionné
+application.get("/cartes/menus/:id/get", function (request, response) {
+
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    let idMenu = parseInt(request.params.id);
+    let aMenu;
+    for (var i = 0; i < listeDeMenus.length; i++) {
+        aMenu = listeDeMenus[i];
+        if (idMenu === listeDeMenus[i].id) {
+            response.setHeader("content-Type", "application/json");
+            response.status(200).json(aMenu);
+        }
+    }
+    response.status(404).send("carte inconnue");
 });
 
 //*********************************************************************************************************************

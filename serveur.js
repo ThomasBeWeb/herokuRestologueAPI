@@ -127,7 +127,7 @@ application.get("/cartes/:id/remove", function (request, response) {
 // Retourne le menu sélectionné
 application.get("/cartes/menus/:id/get", function (request, response) {
 
-    response.header('Access-Control-Allow-Origin', '*');
+    //response.header('Access-Control-Allow-Origin', '*');
     
     let idMenu = parseInt(request.params.id);
     let aMenu;

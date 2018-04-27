@@ -125,10 +125,10 @@ application.get("/cartes/:id/get", function (request, response) {
 });
 
 // Ajoute une nouvelle carte. Recoit juste le nom, cree l'ID et la liste de menu vide
-application.post("/cartes/add", function (req, res) {
+application.get("/cartes/add/:nom", function (req, res) {
     res.header('Access-Control-Allow-Origin', '*');
     
-    let nomCarte = req.body;
+    let nomCarte = req.params.nom;
     
     var newID =  generateIdCarte();
     

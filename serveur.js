@@ -81,19 +81,44 @@ application.get("/cartes/get", function (request, response) {
     response.status(200).json(listeDeCartes);
 });
 
-// Retourne une carte par son id
+// Retourne une carte par son id, les menus sont renvoyes au format json
 application.get("/cartes/:id/get", function (request, response) {
 
     response.header('Access-Control-Allow-Origin', '*');
+    //Recup ID
     let idCarte = parseInt(request.params.id);
-    let aCarte;
+
+    //Creation d'une carte à retourner
+    var carteEnCours = {
+        nom: "",
+        menu: []
+    };
+
+    //Recup du nom et de la liste d'ID des menus
+    var listeID;
+
     for (var i = 0; i < listeDeCartes.length; i++) {
-        aCarte = listeDeCartes[i];
         if (idCarte === listeDeCartes[i].id) {
-            response.header("content-Type", "application/json");
-            response.status(200).json(aCarte);
+            carteEnCours.nom = listeDeCartes[i].nom;
+            listeID = listeDeCartes[i].menu;
+            break;
         }
     }
+
+    //Recup de la liste des menus complets
+    for (var i = 0; i < listeID.length; i++) {
+
+        for (var j = 0; j < listeDeMenus.length; j++) {
+
+            if (listeID[i].id === listeDeMenus[j].id) {
+                carteEnCours.menu.push(listeDeMenus[i]);
+                break;
+            }
+        }
+    }
+
+    response.header("content-Type", "application/json");
+    response.status(200).json(carteEnCours);
     response.status(404).send("carte inconnue");
 });
 
@@ -122,23 +147,6 @@ application.get("/cartes/:id/remove", function (request, response) {
             break;
         }
     }
-});
-
-// Retourne le menu sélectionné
-application.get("/cartes/menus/:id/get", function (request, response) {
-
-    response.header('Access-Control-Allow-Origin', '*');
-    
-    let idMenu = parseInt(request.params.id);
-    let aMenu;
-    for (var i = 0; i < listeDeMenus.length; i++) {
-        aMenu = listeDeMenus[i];
-        if (idMenu === listeDeMenus[i].id) {
-            response.status(200).json(aMenu);
-            response.status(404).send("carte inconnue");
-        }
-    }
-    
 });
 
 //*********************************************************************************************************************

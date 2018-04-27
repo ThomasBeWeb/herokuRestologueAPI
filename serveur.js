@@ -140,8 +140,8 @@ application.get("/cartes/add/:nom", function (req, res) {
     };
 
     listeDeCartes.push(newCard);
-    res.status(200).json();
-    res.status(404).send();
+    res.status(200).send();
+    
 });
 
 // Supprime la carte sélectionnée

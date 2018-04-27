@@ -15,9 +15,9 @@ application.listen(port, () => console.log('Listening on ${ PORT}'));
 
 //Test API
 application.get('/',
-	function(request,response){
-		response.send("le git url très fort" + listeDeMenus[0].id);
-	}
+        function (request, response) {
+            response.send("le git url très fort" + listeDeMenus[0].id);
+        }
 );
 
 application.use(bodyparser.json());
@@ -30,52 +30,51 @@ application.use(bodyparser.urlencoded({
 
 //Vérifie que les informations reçues correspondent à l’utilisateur
 application.post('/verify',
-    function(request,response){
-        
-        response.header('Access-Control-Allow-Origin','*');
-        
-        //Recupere les infos à tester
-        var userTest = request.body;
+        function (request, response) {
 
-        console.log(request.body);
-        
-        if((userTest.username === user.username) && (userTest.password === user.password)){
-            response.status(200).send();
-            user.connected = true;
-        }else{
-            response.status(401).send();
+            response.header('Access-Control-Allow-Origin', '*');
+
+            //Recupere les infos à tester
+            var userTest = request.body;
+
+            console.log(request.body);
+
+            if ((userTest.username === user.username) && (userTest.password === user.password)) {
+                response.status(200).send();
+                user.connected = true;
+            } else {
+                response.status(401).send();
+            }
         }
-    }
 );
 
 //Retourne un status 200 si l’utilisateur est connecté et 401 sinon
 
 application.get('/connected',
+        function (request, response) {
 
-    function(request,response){
-        
-        response.header('Access-Control-Allow-Origin','*');
-        
-        if(user.connected === true){
-            response.status(200).send();
+            response.header('Access-Control-Allow-Origin', '*');
 
-        }else{
-            response.status(401).send();
+            if (user.connected === true) {
+                response.status(200).send();
+
+            } else {
+                response.status(401).send();
+            }
         }
-    }
 );
 
 var user = {
-username : "administrateur",
-password : "1234",
-connected : false
+    username: "administrateur",
+    password: "1234",
+    connected: false
 };
 
 //*********************************************************************************************************************
 //RECUPERATION DATAS
 
 // Retourne toutes les cartes
-app.get("/cartes/get", function (request, response) {
+application.get("/cartes/get", function (request, response) {
 
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader("content-Type", "application/json");
@@ -83,20 +82,21 @@ app.get("/cartes/get", function (request, response) {
 });
 
 // Retourne une carte par son id
-app.get("/cartes/:id/get", function (request, response) {
+application.get("/cartes/:id/get", function (request, response) {
 
     response.setHeader('Access-Control-Allow-Origin', '*');
-            let idCarte = parseInt(request.params.id);
-            let
-    aCarte;
-            for (var i = 0; i < listeDeCartes.length; i++) {
+    let idCarte = parseInt(request.params.id);
+    let aCarte;
+    for (var i = 0; i < listeDeCartes.length; i++) {
         aCarte = listeDeCartes[i];
         if (idCarte === listeDeCartes[i].id) {
             response.setHeader("content-Type", "application/json");
             response.status(200).json(aCarte);
+        } else {
+            response.status(404).send("carte inconnue");
         }
     }
-    response.status(404).send("carte inconnue");
+
 });
 
 

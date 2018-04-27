@@ -126,7 +126,8 @@ application.get("/cartes/:id/get", function (request, response) {
 
 // Ajoute une nouvelle carte. Recoit juste le nom, cree l'ID et la liste de menu vide
 application.get("/cartes/add/:nom", function (req, res) {
-    res.header('Access-Control-Allow-Origin', '*');
+    
+    res.setHeader('Access-Control-Allow-Origin', '*');
     
     let nomCarte = req.params.nom;
     
@@ -137,6 +138,8 @@ application.get("/cartes/add/:nom", function (req, res) {
         nom: nomCarte,
         menu: []
     };
+    
+    console.log(newCard);
 
     listeDeCartes.push(newCard);
     res.status(200).json();

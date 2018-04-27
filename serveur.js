@@ -134,11 +134,11 @@ application.get("/cartes/menus/:id/get", function (request, response) {
     for (var i = 0; i < listeDeMenus.length; i++) {
         aMenu = listeDeMenus[i];
         if (idMenu === listeDeMenus[i].id) {
-            response.header("content-Type", "application/json");
             response.status(200).json(aMenu);
+            //response.status(404).send("carte inconnue");
         }
     }
-    response.status(404).send("carte inconnue");
+    
 });
 
 //*********************************************************************************************************************

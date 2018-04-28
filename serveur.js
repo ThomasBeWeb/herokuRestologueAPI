@@ -160,7 +160,7 @@ application.get("/cartes/:id/remove", function (request, response) {
 });
 
 // Retourne tous les menus de toutes les cartes
-app.get("/menus/get", function (request, response) {
+application.get("/menus/get", function (request, response) {
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader("content-Type", "application/json");
     response.status(200).json(listeDeMenus);

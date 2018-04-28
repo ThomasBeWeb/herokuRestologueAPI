@@ -122,7 +122,7 @@ application.get("/cartes/:id/get", function (request, response) {
     response.status(404).send("carte inconnue");
 });
 
-// Ajoute une nouvelle carte. Recoit juste le nom, cree l'ID et la liste de menu vide
+// Ajoute une nouvelle carte. Recoit juste le nom, cree l'ID et la liste de menu vide et retourne l'ID créé
 application.get("/cartes/add/:nom", function (req, res) {
     
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -138,7 +138,7 @@ application.get("/cartes/add/:nom", function (req, res) {
     };
 
     listeDeCartes.push(newCard);
-    res.status(200).send();
+    res.status(200).send(newID);
     
 });
 

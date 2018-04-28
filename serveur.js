@@ -139,7 +139,7 @@ application.get("/cartes/add/:nom", function (req, res) {
 
     listeDeCartes.push(newCard);
     res.header("content-Type", "application/json");
-    res.sendStatus(200).send(newCard);
+    res.status(200).send(newCard);
     
 });
 

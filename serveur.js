@@ -37,8 +37,6 @@ application.post('/verify',
             //Recupere les infos à tester
             var userTest = request.body;
 
-            console.log(request.body);
-
             if ((userTest.username === user.username) && (userTest.password === user.password)) {
                 response.status(200).send();
                 user.connected = true;
@@ -81,7 +79,7 @@ application.get("/cartes/get", function (request, response) {
     response.status(200).json(listeDeCartes);
 });
 
-// Retourne une carte par son id, les menus sont renvoyes au format json
+// Retourne une carte par son id, les menus sont renvoyes avec tous les plats au format json
 application.get("/cartes/:id/get", function (request, response) {
 
     response.header('Access-Control-Allow-Origin', '*');
@@ -161,6 +159,14 @@ application.get("/cartes/:id/remove", function (request, response) {
     }
 });
 
+// Retourne tous les menus de toutes les cartes
+app.get("/menus/get", function (request, response) {
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader("content-Type", "application/json");
+    response.status(200).json(listeDeMenus);
+});
+
+
 //*********************************************************************************************************************
 //FONCTIONS
 
@@ -182,50 +188,50 @@ function generateIdCarte() {
 var listeDeMenus = [
     {
         id: 1,
-        nom: "menu A",
+        nom: "menu enfant",
         entree: {
-            nom: "entrée A",
-            prix: 0.00
+            nom: "Salade",
+            prix: 2.50
         },
         plat: {
-            nom: "plat A",
-            prix: 0.00
+            nom: "Steak frites",
+            prix: 7.00
         },
         dessert: {
-            nom: "dessert A",
-            prix: 0.00
+            nom: "Crême brulée",
+            prix: 2.40
         }
     },
     {
         id: 2,
-        nom: "menu B",
+        nom: "menu végétarien",
         entree: {
-            nom: "entrée B",
-            prix: 0.00
+            nom: "Soupe",
+            prix: 2.00
         },
         plat: {
-            nom: "plat B",
-            prix: 0.00
+            nom: "Gratin de pates",
+            prix: 3.90
         },
         dessert: {
-            nom: "dessert B",
-            prix: 0.00
+            nom: "Crème au chocolat",
+            prix: 2.00
         }
     },
     {
         id: 3,
-        nom: "menu C",
+        nom: "menu dégustation",
         entree: {
-            nom: "entrée C",
+            nom: "Vérrine",
             prix: 0.00
         },
         plat: {
-            nom: "plat C",
-            prix: 0.00
+            nom: "Steak haricots",
+            prix: 4.90
         },
         dessert: {
-            nom: "dessert C",
-            prix: 0.00
+            nom: "Café gourmand",
+            prix: 3.90
         }
     }
 
@@ -244,7 +250,7 @@ var listeDeCartes = [
     },
     {
         id: 3,
-        nom: "carte 2",
+        nom: "carte 3",
         menu: [1]
     }
 

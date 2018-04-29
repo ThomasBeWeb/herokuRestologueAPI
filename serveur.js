@@ -88,6 +88,7 @@ application.get("/cartes/:id/get", function (request, response) {
 
     //Creation d'une carte à retourner
     var carteEnCours = {
+        id: idCarte,
         nom: "",
         menu: []
     };

@@ -168,6 +168,32 @@ application.get("/menus/get", function (request, response) {
 });
 
 
+//Retire un menu d'une carte
+
+application.get("/cartes/:id/remove/:idmenu", function (request, response) {
+
+    response.header('Access-Control-Allow-Origin', '*');
+    let idCarte = parseInt(request.params.id);
+    let idMenu = parseInt(request.params.idmenu);
+
+    for (var i = 0; i < listeDeCartes.length; i++) {
+
+        if (idCarte === listeDeCartes[i].id) {
+
+            for(var j = 0 ; j < listeDeCartes[i].menu.length ; j++){
+                if(idMenu === listeDeCartes[i].menu[j]){
+                    listeDeCartes[i].menu.splice(j,1);
+                    break;
+                }
+            }
+            response.status(200).send();
+            break;
+        }
+    }
+});
+
+
+
 //*********************************************************************************************************************
 //FONCTIONS
 

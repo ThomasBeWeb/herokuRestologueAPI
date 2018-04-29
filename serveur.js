@@ -169,7 +169,25 @@ application.get("/menus/get", function (request, response) {
 });
 
 
-//Retire un menu d'une carte
+//Ajoute un menu à une carte
+
+application.get("/cartes/:id/add/:idmenu", function (request, response) {
+
+    response.header('Access-Control-Allow-Origin', '*');
+    let idCarte = parseInt(request.params.id);
+    let idMenu = parseInt(request.params.idmenu);
+
+    for (var i = 0; i < listeDeCartes.length; i++) {
+
+        if (idCarte === listeDeCartes[i].id) {
+            listeDeCartes[i].menu.push(idMenu);
+        }
+            response.status(200).send();
+            break;
+    }
+});
+
+//Retire un menu de la carte
 
 application.get("/cartes/:id/remove/:idmenu", function (request, response) {
 
@@ -192,8 +210,6 @@ application.get("/cartes/:id/remove/:idmenu", function (request, response) {
         }
     }
 });
-
-
 
 //*********************************************************************************************************************
 //FONCTIONS

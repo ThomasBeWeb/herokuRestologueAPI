@@ -230,6 +230,32 @@ application.get("/menus/:id/get", function (request, response) {
     response.status(200).json(menuSelect);
 });
 
+// Supprime le menu sélectionné
+application.get("/menus/:id/remove", function (request, response) {
+
+    response.header('Access-Control-Allow-Origin', '*');
+    
+    let idMenu = parseInt(request.params.id);
+
+    // //Verif si menu appartient à une carte, si oui, il est retiré de la carte
+    // for (var i = 0; i < listeDeCartes.length; i++) { //Boucle sur les cartes
+    //     for (var j = 0; j < listeDeCartes[i].menu.length; j++) {    //Boucle sur les menus de cette carte
+    //         if (idMenu === listeDeCartes[i].menu[j]) {
+    //             listeDeCartes[i].menu[j].splice(j,1);
+    //         }
+    //     }
+    // }
+
+    //Suppression du menu de la liste des menus
+    for (var i = 0; i < listeDeMenus.length; i++) {
+        if (idMenu === listeDeMenus[i].id) {
+            listeDeMenus.splice(i, 1);
+            response.status(200).send();
+            break;
+        }
+    }
+});
+
 
 //*********************************************************************************************************************
 //FONCTIONS
@@ -287,7 +313,7 @@ var listeDeMenus = [
         nom: "menu dégustation",
         entree: {
             nom: "Vérrine",
-            prix: 0.00
+            prix: 1.90
         },
         plat: {
             nom: "Steak haricots",

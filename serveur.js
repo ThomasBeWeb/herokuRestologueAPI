@@ -238,13 +238,13 @@ application.get("/menus/:id/remove", function (request, response) {
     let idMenu = parseInt(request.params.id);
 
     // //Verif si menu appartient à une carte, si oui, il est retiré de la carte
-    // for (var i = 0; i < listeDeCartes.length; i++) { //Boucle sur les cartes
-    //     for (var j = 0; j < listeDeCartes[i].menu.length; j++) {    //Boucle sur les menus de cette carte
-    //         if (idMenu === listeDeCartes[i].menu[j]) {
-    //             listeDeCartes[i].menu[j].splice(j,1);
-    //         }
-    //     }
-    // }
+    for (var i = 0; i < listeDeCartes.length; i++) { //Boucle sur les cartes
+        for (var j = 0; j < listeDeCartes[i].menu.length; j++) {    //Boucle sur les menus de cette carte
+            if (idMenu === listeDeCartes[i].menu[j]) {
+                listeDeCartes[i].menu.splice(j,1);
+            }
+        }
+    }
 
     //Suppression du menu de la liste des menus
     for (var i = 0; i < listeDeMenus.length; i++) {

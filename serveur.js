@@ -323,6 +323,22 @@ var listeDeMenus = [
             nom: "Café gourmand",
             prix: 3.90
         }
+    },
+    {
+        id: 4,
+        nom: "menu découverte",
+        entree: {
+            nom: "Friand",
+            prix: 1.90
+        },
+        plat: {
+            nom: "Bavette",
+            prix: 4.90
+        },
+        dessert: {
+            nom: "glace",
+            prix: 3.90
+        }
     }
 
 ];
@@ -341,7 +357,7 @@ var listeDeCartes = [
     {
         id: 3,
         nom: "carte 3",
-        menu: [1]
+        menu: [1,4]
     }
 
 ];

@@ -181,9 +181,9 @@ application.get("/cartes/:id/add/:idmenu", function (request, response) {
 
         if (idCarte === listeDeCartes[i].id) {
             listeDeCartes[i].menu.push(idMenu);
-        }
             response.status(200).send();
             break;
+        }
     }
 });
 

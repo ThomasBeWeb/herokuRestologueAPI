@@ -211,6 +211,26 @@ application.get("/cartes/:id/remove/:idmenu", function (request, response) {
     }
 });
 
+//Retourne un menu
+application.get("/menus/:id/get", function (request, response) {
+
+    let idMenu = parseInt(request.params.id);
+
+    var menuSelect;
+
+    for (var i = 0; i < listeDeMenus.length; i++) {
+
+        if (idMenu === listeDeMenus[i].id) {
+            menuSelect = listeDeMenus[i];
+        }
+    }
+
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader("content-Type", "application/json");
+    response.status(200).json(menuSelect);
+});
+
+
 //*********************************************************************************************************************
 //FONCTIONS
 

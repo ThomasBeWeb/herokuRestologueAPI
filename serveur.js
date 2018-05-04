@@ -262,6 +262,8 @@ application.post("/menus/add/", function (req, res) {
     
     res.setHeader('Access-Control-Allow-Origin', '*');
 
+    var flag = false;
+
     //Recupere les infos à tester
     var newMenu = req.body;
 
@@ -273,18 +275,23 @@ application.post("/menus/add/", function (req, res) {
 
         //Ajoute le menu
         listeDeMenus.push(newMenu);
+
+        flag = true;
     
     }else{  //Modif d'un menu existant
         //remplacement du menu par sa nouvelle version
         for (var i = 0; i < listeDeMenus.length; i++) {
             if (idMenuSelected === listeDeMenus[i].id) {
                 listeDeMenus.splice(i, 1,newMenu);
+                flag = true;
                 break;
             }
         }
     }
-
-    res.status(200).send();
+    if(flag){
+        res.status(200).send();
+    }
+    
 });
 
 //*********************************************************************************************************************

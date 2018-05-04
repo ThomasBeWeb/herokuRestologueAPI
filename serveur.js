@@ -256,7 +256,8 @@ application.get("/menus/:id/remove", function (request, response) {
     }
 });
 
-//Ajoute un nouveau menu: Recoit le nmenu en json, determeine le nouvel ID et l'integre à listeDeMenus
+//Ajoute un nouveau menu: Recoit le menu en json, determeine le nouvel ID et l'integre à listeDeMenus
+//OU modifie un menu si existant
 application.post("/menus/add/", function (req, res) {
     
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -264,12 +265,26 @@ application.post("/menus/add/", function (req, res) {
     //Recupere les infos à tester
     var newMenu = req.body;
 
-    //Deteremine l'ID
-    newMenu.id = generateIdMenu();
+    var idMenuSelected = newMenu.id;
 
-    listeDeMenus.push(newMenu);
-    res.status(200).send();
+    if(idMenuSelected === 0){ //New menu
+        //Deteremine l'ID
+        newMenu.id = generateIdMenu();
+
+        //Ajoute le menu
+        listeDeMenus.push(newMenu);
     
+    }else{  //Modif d'un menu existant
+        //remplacement du menu par sa nouvelle version
+        for (var i = 0; i < listeDeMenus.length; i++) {
+            if (idMenuSelected === listeDeMenus[i].id) {
+                listeDeMenus.splice(i, 1,newMenu);
+                break;
+            }
+        }
+    }
+
+    res.status(200).send();
 });
 
 //*********************************************************************************************************************

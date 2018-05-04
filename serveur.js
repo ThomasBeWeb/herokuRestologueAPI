@@ -237,7 +237,7 @@ application.get("/menus/:id/remove", function (request, response) {
     
     let idMenu = parseInt(request.params.id);
 
-    // //Verif si menu appartient à une carte, si oui, il est retiré de la carte
+    //Verif si menu appartient à une carte, si oui, il est retiré de la carte
     for (var i = 0; i < listeDeCartes.length; i++) { //Boucle sur les cartes
         for (var j = 0; j < listeDeCartes[i].menu.length; j++) {    //Boucle sur les menus de cette carte
             if (idMenu === listeDeCartes[i].menu[j]) {
@@ -256,6 +256,21 @@ application.get("/menus/:id/remove", function (request, response) {
     }
 });
 
+//Ajoute un nouveau menu: Recoit le nmenu en json, determeine le nouvel ID et l'integre à listeDeMenus
+application.post("/menus/add/", function (req, res) {
+    
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    //Recupere les infos à tester
+    var newMenu = req.body;
+
+    //Deteremine l'ID
+    newMenu.id = generateIdMenu();
+
+    listeDeMenus.push(newMenu);
+    res.status(200).send();
+    
+});
 
 //*********************************************************************************************************************
 //FONCTIONS
@@ -269,8 +284,18 @@ function generateIdCarte() {
         }
     }
     return idMax + 1;
-}
-;
+};
+
+// génération de l'id d'un Menu
+function generateIdMenu() {
+    var idMax = 0;
+    for (var i in listeDeMenus) {
+        if (listeDeMenus[i].id > idMax) {
+            idMax = listeDeMenus[i].id;
+        }
+    }
+    return idMax + 1;
+};
 
 //*********************************************************************************************************************
 //DATAS

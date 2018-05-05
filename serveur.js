@@ -282,6 +282,7 @@ application.post("/menus/add/", function (req, res) {
         //remplacement du menu par sa nouvelle version
         for (var i = 0; i < listeDeMenus.length; i++) {
             if (idMenuSelected === listeDeMenus[i].id) {
+                newMenu.id = idMenuSelected;
                 listeDeMenus.splice(i, 1,newMenu);
                 flag = true;
                 break;

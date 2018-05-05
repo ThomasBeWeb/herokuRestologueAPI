@@ -267,7 +267,7 @@ application.post("/menus/add/", function (req, res) {
     //Recupere les infos à tester
     var newMenu = req.body;
 
-    var idMenuSelected = newMenu.id;
+    var idMenuSelected = parseInt(newMenu.id);
 
     if(idMenuSelected === 0){ //New menu
         //Deteremine l'ID

@@ -182,7 +182,7 @@ application.get("/cartes/:id/check/:idmenu", function (request, response) {
 
             for(var j = 0 ; j < listeDeCartes[i].menu ; j++){
 
-                if(idMenu = listeDeCartes[i].menu[j]){
+                if(idMenu === listeDeCartes[i].menu[j]){
                     reponse = true;
                     break;
                 }

@@ -174,16 +174,16 @@ application.get("/cartes/:id/check/:idmenu", function (request, response) {
     let idCarte = parseInt(request.params.id);
     let idMenu = parseInt(request.params.idmenu);
 
+    var reponse = false;
+
     for (var i = 0; i < listeDeCartes.length; i++) {
 
-        var reponse = false;
-
         if (idCarte === listeDeCartes[i].id) {
-            reponse = true;
+            
             for(var j = 0 ; j < listeDeCartes[i].menu.length ; j++){
 
                 if(idMenu === listeDeCartes[i].menu[j]){
-                    
+                    reponse = true;
                     break;
                 }
             }

@@ -167,9 +167,33 @@ application.get("/menus/get", function (request, response) {
     response.status(200).json(listeDeMenus);
 });
 
+//Verifie si un menu est present dans une carte
+application.get("/cartes/:id/check/:idmenu", function (request, response) {
+
+    response.header('Access-Control-Allow-Origin', '*');
+    let idCarte = parseInt(request.params.id);
+    let idMenu = parseInt(request.params.idmenu);
+
+    for (var i = 0; i < listeDeCartes.length; i++) {
+
+        var reponse = false;
+
+        if (idCarte === listeDeCartes[i].id) {
+
+            for(var j = 0 ; j < listeDeCartes[i].menu ; j++){
+
+                if(idMenu = listeDeCartes[i].menu[j]){
+                    reponse = true;
+                    break;
+                }
+            }
+        }
+    }
+    response.status(200).send(reponse);
+});
+
 
 //Ajoute un menu à une carte
-
 application.get("/cartes/:id/add/:idmenu", function (request, response) {
 
     response.header('Access-Control-Allow-Origin', '*');

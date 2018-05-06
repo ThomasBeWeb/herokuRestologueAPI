@@ -149,13 +149,12 @@ application.get("/cartes/:id/remove", function (request, response) {
 
     response.header('Access-Control-Allow-Origin', '*');
     let idCarte = parseInt(request.params.id);
-    let aCarte;
+
     for (var i = 0; i < listeDeCartes.length; i++) {
-        aCarte = listeDeCartes[i];
+
         if (idCarte === listeDeCartes[i].id) {
             listeDeCartes.splice(i, 1);
-            response.status(200).json(aCarte);
-            response.header("content-Type", "application/json");
+            response.status(200).send();
             break;
         }
     }

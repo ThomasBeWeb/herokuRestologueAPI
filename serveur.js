@@ -180,7 +180,7 @@ application.get("/cartes/:id/check/:idmenu", function (request, response) {
 
         if (idCarte === listeDeCartes[i].id) {
 
-            for(var j = 0 ; j < listeDeCartes[i].menu ; j++){
+            for(var j = 0 ; j < listeDeCartes[i].menu.length ; j++){
 
                 if(idMenu === listeDeCartes[i].menu[j]){
                     reponse = true;

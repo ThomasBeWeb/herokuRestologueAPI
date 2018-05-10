@@ -28,6 +28,34 @@ application.use(bodyparser.urlencoded({
 //********************************************************************************************************************
 //CONNEXION
 
+//Retourne un status 200 si l’utilisateur est administrateur et 401 sinon
+
+application.get('/use/:login',
+    function (request, response) {
+
+        //Recup login
+        let loginUser = request.params.login;
+
+        response.header('Access-Control-Allow-Origin', '*');
+
+        var flag = false;
+
+        for(var i = 0 ; i < user.length ; i++){
+
+            if (user.username === loginUser) {
+                flag = true;
+                break;
+            }
+        }
+
+        if (flag) {
+            response.status(200).send();
+        } else {
+            response.status(401).send();
+        }
+    }
+);
+
 //Vérifie que les informations reçues correspondent à l’utilisateur
 application.post('/verify',
         function (request, response) {
@@ -39,23 +67,6 @@ application.post('/verify',
 
             if ((userTest.username === user.username) && (userTest.password === user.password)) {
                 response.status(200).send();
-                user.connected = true;
-            } else {
-                response.status(401).send();
-            }
-        }
-);
-
-//Retourne un status 200 si l’utilisateur est connecté et 401 sinon
-
-application.get('/connected',
-        function (request, response) {
-
-            response.header('Access-Control-Allow-Origin', '*');
-
-            if (user.connected === true) {
-                response.status(200).send();
-
             } else {
                 response.status(401).send();
             }

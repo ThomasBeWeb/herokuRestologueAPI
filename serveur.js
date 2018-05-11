@@ -42,7 +42,7 @@ application.get('/use/:login',
 
         for(var i = 0 ; i < user.length ; i++){
 
-            if (user.username === loginUser) {
+            if (user[i].username === loginUser) {
                 flag = true;
                 break;
             }
@@ -73,11 +73,13 @@ application.post('/verify',
         }
 );
 
-var user = {
+var user = [
+    {
     username: "administrateur",
     password: "1234",
     connected: false
-};
+    }
+];
 
 //*********************************************************************************************************************
 //RECUPERATION DATAS

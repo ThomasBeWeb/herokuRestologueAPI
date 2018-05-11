@@ -49,7 +49,7 @@ application.get('/use/:login',
         }
 
         if (flag) {
-            response.status(200).send("admin");
+            response.status(200).send("adin");
         } else {
             response.status(401).send(loginUser);
         }

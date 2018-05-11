@@ -51,7 +51,7 @@ application.get('/use/:login',
         if (flag) {
             response.status(200).send("admin");
         } else {
-            response.status(401).send("user");
+            response.status(200).send("user");
         }
     }
 );

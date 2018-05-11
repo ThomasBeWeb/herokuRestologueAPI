@@ -28,7 +28,7 @@ application.use(bodyparser.urlencoded({
 //********************************************************************************************************************
 //CONNEXION
 
-//Retourne un status 200 si l’utilisateur est administrateur et 401 sinon
+//Retourne un status "admin" si l’utilisateur est administrateur et "user" sinon
 
 application.get('/use/:login',
     function (request, response) {
@@ -49,9 +49,9 @@ application.get('/use/:login',
         }
 
         if (flag) {
-            response.status(200).send();
+            response.status(200).send("admin");
         } else {
-            response.status(401).send();
+            response.status(401).send("user");
         }
     }
 );

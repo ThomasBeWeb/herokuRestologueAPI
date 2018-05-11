@@ -34,7 +34,7 @@ application.get('/use/:login',
     function (request, response) {
 
         //Recup login
-        let loginUser = request.params.login;
+        var loginUser = request.params.login;
 
         response.header('Access-Control-Allow-Origin', '*');
 
@@ -51,7 +51,7 @@ application.get('/use/:login',
         if (flag) {
             response.status(200).send("admin");
         } else {
-            response.status(401).send("user");
+            response.status(401).send(loginUser);
         }
     }
 );

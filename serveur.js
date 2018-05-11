@@ -49,9 +49,9 @@ application.get('/use/:login',
         }
 
         if (flag) {
-            response.status(200).send("adin");
+            response.status(200).send("admin");
         } else {
-            response.status(401).send(loginUser);
+            response.status(401).send("user");
         }
     }
 );

@@ -78,9 +78,9 @@ application.post('/verify',
         }
 
         if (flag) {
-            response.status(200).send(true);
+            response.status(200).send(userTest);
         } else {
-            response.status(200).send(false);
+            response.status(200).send(userTest);
         }
     }
 );

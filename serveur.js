@@ -68,7 +68,7 @@ application.post('/verify',
             if ((userTest.username === user.username) && (userTest.password === user.password)) {
                 response.status(200).send(true);
             } else {
-                response.status(200).send(false);
+                response.status(200).send(userTest);
             }
         }
 );

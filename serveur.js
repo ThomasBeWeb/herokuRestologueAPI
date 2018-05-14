@@ -195,9 +195,9 @@ application.get("/cartes/:id/online", function (request, response) {
 
         if (idCarte === listeDeCartes[i].id) {
             if(listeDeCartes[i].online === "true"){
-                listeDeCartes[i].online === "false";
+                listeDeCartes[i].online = "false";
             }else{
-                listeDeCartes[i].online === "true";
+                listeDeCartes[i].online = "true";
             }
             response.status(200).send(listeDeCartes[i].online);
             break;

@@ -109,7 +109,7 @@ application.get("/cartes/getonline", function (request, response) {
 
     response.header('Access-Control-Allow-Origin', '*');
 
-    var listeOnline;
+    var listeOnline = [];
 
     for (var i = 0; i < listeDeCartes.length; i++) {
         if (listeDeCartes[i].online === "true") {

@@ -108,6 +108,7 @@ application.get("/cartes/get", function (request, response) {
 application.get("/cartes/getonline", function (request, response) {
 
     response.header('Access-Control-Allow-Origin', '*');
+    response.setHeader("content-Type", "application/json");
 
     var listeOnline = [];
 
@@ -116,7 +117,7 @@ application.get("/cartes/getonline", function (request, response) {
             listeOnline.push(listeDeCartes[i].id)
         }
     }
-    response.status(200).send(listeOnline);
+    response.status(200).json(listeOnline);
 });
 
 // Retourne une carte par son id, les menus sont renvoyes avec tous les plats au format json

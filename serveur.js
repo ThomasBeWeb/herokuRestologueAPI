@@ -58,19 +58,31 @@ application.get('/use/:login',
 
 //Vérifie que les informations reçues correspondent à l’utilisateur
 application.post('/verify',
-        function (request, response) {
+    function (request, response) {
 
-            response.header('Access-Control-Allow-Origin', '*');
+        response.header('Access-Control-Allow-Origin', '*');
 
-            //Recupere les infos à tester
-            var userTest = request.body;
+        //Recupere les infos à tester
+        var userTest = request.body;
 
-            if ((userTest.username === user.username) && (userTest.password === user.password)) {
-                response.status(200).send();
-            } else {
-                response.status(401).send();
+        //Check dans la liste de Users
+
+        var flag = false;
+
+        for(var i = 0 ; i < user.length ; i++){
+
+            if ((userTest.username === user[i].username) && (userTest.password === user[i].password)) {
+                flag = true;
+                break;
             }
         }
+
+        if (flag) {
+            response.status(200).send(true);
+        } else {
+            response.status(200).send(false);
+        }
+    }
 );
 
 var user = [

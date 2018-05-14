@@ -104,6 +104,21 @@ application.get("/cartes/get", function (request, response) {
     response.status(200).json(listeDeCartes);
 });
 
+// Retourne la liste des ID de toutes les cartes ayant le statut online
+application.get("/cartes/getonline", function (request, response) {
+
+    response.header('Access-Control-Allow-Origin', '*');
+
+    var listeOnline;
+
+    for (var i = 0; i < listeDeCartes.length; i++) {
+        if (listeDeCartes[i].online === "true") {
+            listeOnline.push(listeDeCartes[i].id)
+        }
+    }
+    response.status(200).send(listeOnline);
+});
+
 // Retourne une carte par son id, les menus sont renvoyes avec tous les plats au format json
 application.get("/cartes/:id/get", function (request, response) {
 

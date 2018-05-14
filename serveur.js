@@ -115,6 +115,7 @@ application.get("/cartes/:id/get", function (request, response) {
     var carteEnCours = {
         id: idCarte,
         nom: "",
+        online: "",
         menu: []
     };
 
@@ -124,6 +125,7 @@ application.get("/cartes/:id/get", function (request, response) {
     for (var i = 0; i < listeDeCartes.length; i++) {
         if (idCarte === listeDeCartes[i].id) {
             carteEnCours.nom = listeDeCartes[i].nom;
+            carteEnCours.online = listeDeCartes[i].online;
             listeID = listeDeCartes[i].menu;
             break;
         }
@@ -160,6 +162,7 @@ application.get("/cartes/add/:nom", function (req, res) {
     var newCard = {
         id: newID,
         nom: nomCarte,
+        online: "false",
         menu: []
     };
 

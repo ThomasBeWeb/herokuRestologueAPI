@@ -185,7 +185,7 @@ application.get("/cartes/:id/remove", function (request, response) {
     }
 });
 
-// Modeifie le statut Online de la carte sélectionnée
+// Modifie le statut Online de la carte sélectionnée
 application.get("/cartes/:id/online", function (request, response) {
 
     response.header('Access-Control-Allow-Origin', '*');
@@ -199,7 +199,7 @@ application.get("/cartes/:id/online", function (request, response) {
             }else{
                 listeDeCartes[i].online === "true";
             }
-            response.status(200).send("OK");
+            response.status(200).send(listeDeCartes[i].online);
             break;
         }
     }

@@ -173,6 +173,26 @@ application.get("/cartes/:id/remove", function (request, response) {
     }
 });
 
+// Modeifie le statut Online de la carte sélectionnée
+application.get("/cartes/:id/online", function (request, response) {
+
+    response.header('Access-Control-Allow-Origin', '*');
+    let idCarte = parseInt(request.params.id);
+
+    for (var i = 0; i < listeDeCartes.length; i++) {
+
+        if (idCarte === listeDeCartes[i].id) {
+            if(listeDeCartes[i].online === "true"){
+                listeDeCartes[i].online === "false";
+            }else{
+                listeDeCartes[i].online === "true";
+            }
+            response.status(200).send("OK");
+            break;
+        }
+    }
+});
+
 // Retourne tous les menus de toutes les cartes
 application.get("/menus/get", function (request, response) {
     response.setHeader('Access-Control-Allow-Origin', '*');
@@ -431,16 +451,19 @@ var listeDeCartes = [
     {
         id: 1,
         nom: "carte 1",
+        online: "true",
         menu: [1, 2]
     },
     {
         id: 2,
         nom: "carte 2",
+        online: "false",
         menu: [3, 2]
     },
     {
         id: 3,
         nom: "carte 3",
+        online: "true",
         menu: [1,4]
     }
 

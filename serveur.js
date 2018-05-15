@@ -442,7 +442,7 @@ function generateIdMenu() {
 function generateIdUser() {
     var idMax = 0;
     for (var i in listeAdmins) {
-        if (listeDelisteAdminsMenus[i].id > idMax) {
+        if (listeAdmins[i].id > idMax) {
             idMax = listeAdmins[i].id;
         }
     }

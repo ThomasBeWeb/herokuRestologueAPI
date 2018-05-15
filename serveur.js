@@ -96,6 +96,7 @@ application.get('/users/get',
     }
 );
 
+//Ajoute un user
 application.post('/users/add',
     function (request, response) {
 
@@ -116,13 +117,21 @@ application.post('/users/add',
     }
 );
 
-var listeAdmins = [
-    {
-    id: 1,
-    username: "administrateur",
-    password: "1234",
+//Supprime un user
+application.get("/users/:id/remove", function (request, response) {
+
+    response.header('Access-Control-Allow-Origin', '*');
+    let idUser = parseInt(request.params.id);
+
+    for (var i = 0; i < listeAdmins.length; i++) {
+
+        if (idUser === listeAdmins[i].id) {
+            listeAdmins.splice(i, 1);
+            response.status(200).send();
+            break;
+        }
     }
-];
+});
 
 //*********************************************************************************************************************
 //RECUPERATION DATAS
@@ -542,4 +551,11 @@ var listeDeCartes = [
 
 ];
 
-
+//USERS
+var listeAdmins = [
+    {
+    id: 1,
+    username: "administrateur",
+    password: "1234",
+    }
+];

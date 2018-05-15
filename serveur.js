@@ -40,9 +40,9 @@ application.get('/use/:login',
 
         var flag = false;
 
-        for(var i = 0 ; i < user.length ; i++){
+        for(var i = 0 ; i < listeAdmins.length ; i++){
 
-            if (user[i].username === loginUser) {
+            if (listeAdmins[i].username === loginUser) {
                 flag = true;
                 break;
             }
@@ -69,9 +69,9 @@ application.post('/verify',
 
         var flag = false;
 
-        for(var i = 0 ; i < user.length ; i++){
+        for(var i = 0 ; i < listeAdmins.length ; i++){
 
-            if ((userTest.username === user[i].username) && (userTest.password === user[i].password)) {
+            if ((userTest.username === listeAdmins[i].username) && (userTest.password === user[i].password)) {
                 flag = true;
                 break;
             }
@@ -92,7 +92,7 @@ application.get('/users/get',
         response.header('Access-Control-Allow-Origin', '*');
         response.setHeader("content-Type", "application/json");
 
-        response.status(200).send(user);
+        response.status(200).send(listeAdmins);
     }
 );
 
@@ -104,16 +104,20 @@ application.post('/users/add',
         //Recupere les infos du user
         var newUser = request.body;
 
+        //Ajout new ID
+        newUser.id = generateIdUser();
+
         //Ajout dans la liste de Users
 
-        user.push(newUser);
+        listeAdmins.push(newUser);
 
         response.status(200).send();
     }
 );
 
-var user = [
+var listeAdmins = [
     {
+    id: 1,
     username: "administrateur",
     password: "1234",
     }
@@ -428,6 +432,17 @@ function generateIdMenu() {
     for (var i in listeDeMenus) {
         if (listeDeMenus[i].id > idMax) {
             idMax = listeDeMenus[i].id;
+        }
+    }
+    return idMax + 1;
+};
+
+// génération de l'id d'un User
+function generateIdUser() {
+    var idMax = 0;
+    for (var i in listeAdmins) {
+        if (listeDelisteAdminsMenus[i].id > idMax) {
+            idMax = listeAdmins[i].id;
         }
     }
     return idMax + 1;

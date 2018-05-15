@@ -71,7 +71,7 @@ application.post('/verify',
 
         for(var i = 0 ; i < listeAdmins.length ; i++){
 
-            if ((userTest.username === listeAdmins[i].username) && (userTest.password === user[i].password)) {
+            if ((userTest.username === listeAdmins[i].username) && (userTest.password === listeAdmins[i].password)) {
                 flag = true;
                 break;
             }

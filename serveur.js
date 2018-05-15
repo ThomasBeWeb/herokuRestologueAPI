@@ -85,11 +85,37 @@ application.post('/verify',
     }
 );
 
+//Retourne la liste des users
+application.get('/users/get',
+    function (request, response) {
+
+        response.header('Access-Control-Allow-Origin', '*');
+        response.setHeader("content-Type", "application/json");
+
+        response.status(200).send(user);
+    }
+);
+
+application.post('/users/add',
+    function (request, response) {
+
+        response.header('Access-Control-Allow-Origin', '*');
+
+        //Recupere les infos du user
+        var newUser = request.body;
+
+        //Ajout dans la liste de Users
+
+        user.push(newUser);
+
+        response.status(200).send();
+    }
+);
+
 var user = [
     {
     username: "administrateur",
     password: "1234",
-    connected: false
     }
 ];
 

@@ -112,6 +112,7 @@ application.post('/users/add',
         listeAdmins.push(newUser);
 
         response.status(200).send();
+        
     }
 );
 

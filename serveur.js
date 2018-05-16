@@ -253,7 +253,7 @@ application.get("/cartes/:id/:name", function (request, response) {
     for (var i = 0; i < listeDeCartes.length; i++) {
 
         if (idCarte === listeDeCartes[i].id) {
-            listeDeCartes[i].name = newNameCarte;
+            listeDeCartes[i].nom = newNameCarte;
             response.status(200).send();
             break;
         }

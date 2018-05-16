@@ -243,6 +243,23 @@ application.get("/cartes/:id/remove", function (request, response) {
     }
 });
 
+//Change le nom de la carte
+application.get("/cartes/:id/:name", function (request, response) {
+
+    response.header('Access-Control-Allow-Origin', '*');
+    let idCarte = parseInt(request.params.id);
+    let newNameCarte = parseInt(request.params.name);
+
+    for (var i = 0; i < listeDeCartes.length; i++) {
+
+        if (idCarte === listeDeCartes[i].id) {
+            listeDeCartes[i].name = newNameCarte;
+            response.status(200).send();
+            break;
+        }
+    }
+});
+
 // Modifie le statut Online de la carte sélectionnée
 application.get("/cartes/:id/online", function (request, response) {
 

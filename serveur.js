@@ -203,7 +203,6 @@ application.get("/cartes/:id/get", function (request, response) {
 
     response.header("content-Type", "application/json");
     response.status(200).json(carteEnCours);
-    response.status(404).send("carte inconnue");
 });
 
 // Ajoute une nouvelle carte. Recoit juste le nom, cree l'ID et la liste de menu vide et retourne l'ID créé

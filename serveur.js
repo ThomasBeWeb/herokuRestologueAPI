@@ -248,7 +248,7 @@ application.get("/cartes/:id/:name", function (request, response) {
 
     response.header('Access-Control-Allow-Origin', '*');
     let idCarte = parseInt(request.params.id);
-    let newNameCarte = parseInt(request.params.name);
+    let newNameCarte = (request.params.name);
 
     for (var i = 0; i < listeDeCartes.length; i++) {
 

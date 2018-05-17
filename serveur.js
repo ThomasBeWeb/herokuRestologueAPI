@@ -137,7 +137,7 @@ application.get("/users/:id/remove", function (request, response) {
 application.get("/users/checkname/:login", function (request, response) {
 
     response.header('Access-Control-Allow-Origin', '*');
-    let loginToTest = parseInt(request.params.login);
+    let loginToTest = request.params.login;
 
     var flag = "true";
 

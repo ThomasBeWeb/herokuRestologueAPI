@@ -133,6 +133,25 @@ application.get("/users/:id/remove", function (request, response) {
     }
 });
 
+//Check si un nom d'utilisateur est déjà pris
+application.get("/users/checkname/:login", function (request, response) {
+
+    response.header('Access-Control-Allow-Origin', '*');
+    let loginToTest = parseInt(request.params.login);
+
+    var flag = "true";
+
+    for (var i = 0; i < listeAdmins.length; i++) {
+
+        if (loginToTest === listeAdmins[i].username) {
+            flag = "false";
+            break;
+        }
+    }
+
+    response.status(200).send(flag);
+});
+
 //*********************************************************************************************************************
 //RECUPERATION DATAS
 

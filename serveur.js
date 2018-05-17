@@ -591,6 +591,6 @@ var listeAdmins = [
     {
     id: 1,
     username: "administrateur",
-    password: "1234",
+    password: "1234"
     }
 ];

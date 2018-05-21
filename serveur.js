@@ -84,6 +84,17 @@ application.get("/users/checkname/:login", function (request, response) {
     response.status(200).send(flag);
 });
 
+//Retourne la liste des users
+application.get('/users/get',
+    function (request, response) {
+
+        response.header('Access-Control-Allow-Origin', '*');
+        response.setHeader("content-Type", "application/json");
+
+        response.status(200).send(listeUsers);
+    }
+);
+
 //*********************************************************************************************************************
 
 // génération de l'id d'un User
